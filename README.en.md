@@ -5,7 +5,7 @@
     <a href="https://github.com/ChatArch/ChatJulia/actions/workflows/ci.yml">
         <img src="https://github.com/ChatArch/ChatJulia/actions/workflows/ci.yml/badge.svg" alt="Tests" />
     </a>
-    <a href="https://ChatArch.github.io/ChatJulia">
+    <a href="https://arch.gh.wzhecnu.cn/ChatJulia/">
         <img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Documentation" />
     </a>
 </div>
@@ -17,26 +17,31 @@
 
 # ChatJulia
 
-ChatJulia: ChatArch Julia tooling package
+ChatJulia is the ChatArch Julia tooling package entrypoint. The package currently keeps a minimal root-only CLI so the Julia tooling shell remains installable, discoverable, and releasable; real Julia orchestration commands are not exposed yet.
 
 ## Quick Start
 
 ```bash
-pip install -e ".[dev]"
+pip install ChatJulia
 chatjulia --help
 chatjulia --version
-python -m pytest -q
-python -m build
+chatjulia --tree
 ```
 
-## CLI Contract
+## Current CLI Tree
 
-This template depends on `chatstyle>=0.1.0,<0.2.0` and `chatenv>=0.2.0,<0.3.0`. New commands should prefer:
+```text
+chatjulia  # ChatArch Julia tooling entrypoint
+├── --help  # show command help
+├── --version  # show the installed package version
+└── --tree  # show this CLI tree
+```
 
-- `CommandSchema` / `CommandField` for inputs.
-- `add_interactive_option()` for the shared `-i/-I` switch.
-- `resolve_command_inputs()` for missing args, defaults, TTY behavior, and validation.
-- Generate `config.py` and a `chatenv.configs` entry point by default so the package is ChatEnv-discoverable; use `--without-chatenv-provider` only when ChatEnv integration is intentionally not needed.
+## CLI Boundary
+
+- The current CLI only exposes root options and has no business subcommands.
+- `--tree` is generated from the real Click command registration and is used to align README, docs, and tests.
+- When real Julia environment, package, script, or execution orchestration commands are added later, update the Click registration first and then sync docs from the real `chatjulia --tree` output.
 
 ## Layout
 
@@ -44,7 +49,7 @@ This template depends on `chatstyle>=0.1.0,<0.2.0` and `chatenv>=0.2.0,<0.3.0`. 
 - `tests/code-tests/`: code tests and migrated historical tests
 - `tests/cli-tests/`: real CLI tests, doc-first
 - `tests/mock-cli-tests/`: mock/fake CLI tests, doc-first
-- `docs/`: long-lived project docs built by mkdocs
+- `docs/`: long-lived project docs built by MkDocs
 
 ## Development Notes
 
