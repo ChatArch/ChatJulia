@@ -26,22 +26,25 @@ pip install ChatJulia
 chatjulia --help
 chatjulia --version
 chatjulia --tree
+chatjulia --tree-brief
 ```
 
 ## 当前 CLI 树
 
 ```text
-chatjulia  # ChatArch Julia tooling entrypoint
-├── --help  # show command help
-├── --version  # show the installed package version
-└── --tree  # show this CLI tree
+chatjulia
+├── --help  # Show this message and exit.
+├── --version  # Show the version and exit.
+├── --tree  # Print the registered CLI tree and exit.
+└── --tree-brief  # Print the registered CLI tree without parameter signatures and exit.
 ```
 
 ## CLI 边界
 
 - 当前 CLI 只有根选项，没有业务子命令。
-- `--tree` 从实际 Click 命令注册面生成，用来校对 README、文档和测试。
-- 后续新增真实 Julia 环境、包、脚本或执行编排命令时，必须先更新 Click 注册面，再用真实 `chatjulia --tree` 同步文档。
+- `--tree` 和 `--tree-brief` 由 ChatStyle 从实际 Click 命令注册面生成，公开树根固定为规范命令名 `chatjulia`。
+- `--tree` 默认保留参数签名；`--tree-brief` 省略参数签名，但保留命令节点和说明。当前只有布尔根选项，没有带参数的子命令，所以两种输出暂时相同。
+- 后续新增真实 Julia 环境、包、脚本或执行编排命令时，必须先更新 Click 注册面，再用真实 `chatjulia --tree` 和 `chatjulia --tree-brief` 同步文档。
 
 ## 目录结构
 

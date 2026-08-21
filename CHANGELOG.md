@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-08-21 - 0.1.2
+
+### Changed
+
+- Migrated the top-level Click CLI from its local tree formatter to ChatStyle's shared `add_tree_option()` runtime.
+- Added canonical `chatjulia` full and brief tree readbacks: `--tree` retains parameter signatures and `--tree-brief` omits them while preserving command nodes and descriptions.
+- Updated runtime bounds to `chatstyle>=0.2.0,<0.3.0` and `chatenv>=0.2.10,<0.3.0`.
+- Added package and CI smoke coverage for the version and both tree modes.
+
 ## 2026-08-12 - 0.1.1
 
 ### Added
